@@ -239,7 +239,7 @@ const validarData = (elementoValorDia, elementoValorMes, elementoValorAno, eleme
   let valorMes = elementoValorMes.value;
   let valorAno = elementoValorAno.value;
   let dataAtual = new Date();
-  let dataGerada = new Date(valorAno + "-" + valorMes + "-" + valorDia);
+  let dataGerada = new Date(valorAno + "-" + valorMes + "-" + valorDia + " 19:00:00");
 
   elementoValorDia.className = "input";
   elementoValorMes.className = "input";
@@ -247,49 +247,46 @@ const validarData = (elementoValorDia, elementoValorMes, elementoValorAno, eleme
 
   elementoErro.innerText = "";
 
-  console.log(isNan(dataGerada));
-
   if (valorDia.length === 0 || valorDia === null || valorMes.length === 0 || valorMes === null || valorAno.length === 0 || valorAno === null) {
     elementoValorDia.className += " is-danger";
     elementoValorMes.className += " is-danger";
-    elementoValorAno.className += " is-danger";  
-    
+    elementoValorAno.className += " is-danger";
+
     elementoErro.innerText = "A data de nascimento é necessária";
     return false;
   }
 
-  if(valorDia <= 0 || valorDia >= 32) {
+  if (isNaN(dataGerada)) {
     elementoValorDia.className += " is-danger";
     elementoValorMes.className += " is-danger";
-    elementoValorAno.className += " is-danger";  
+    elementoValorAno.className += " is-danger";
 
-    elementoErro.innerText = "O dia de nascimento está incorreto";
+    elementoErro.innerText = "A data digitada está incorreta";
     return false;
   }
 
-  if(valorMes <= 0 || valorMes >= 13) {
+  if (dataGerada.getDate().toLocaleString() !== valorDia) {
     elementoValorDia.className += " is-danger";
     elementoValorMes.className += " is-danger";
-    elementoValorAno.className += " is-danger";  
+    elementoValorAno.className += " is-danger";
 
-    elementoErro.innerText = "O mês de nascimento está incorreto";
+    elementoErro.innerText = "A data digitada está incorreta";
     return false;
   }
 
-  
-  if(valorAno <= 1900 || valorAno >= dataAtual.getFullYear()) {
+  if (valorAno <= 1900 || valorAno > dataAtual.getFullYear()) {
     elementoValorDia.className += " is-danger";
     elementoValorMes.className += " is-danger";
-    elementoValorAno.className += " is-danger";  
-    
+    elementoValorAno.className += " is-danger";
+
     elementoErro.innerText = "O ano de nascimento está incorreto";
     return false;
   }
-  
+
 
   elementoValorDia.className += " is-success";
   elementoValorMes.className += " is-success";
-  elementoValorAno.className += " is-success";  
+  elementoValorAno.className += " is-success";
 
   return true;
 }
