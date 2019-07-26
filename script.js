@@ -16,21 +16,32 @@ let erroTermos = document.getElementById('erroTermos');
 let valorCPF = document.getElementById('valorCPF');
 let erroCPF = document.getElementById('erroCPF');
 
-let formularioValido = false;
+let valorRG = document.getElementById('valorRG');
+let erroRG = document.getElementById('erroRG');
+
+let valorDia = document.getElementById('valorDia');
+let valorMes = document.getElementById('valorMes');
+let valorAno = document.getElementById('valorAno');
+let erroData = document.getElementById('erroData');
 
 form.addEventListener('submit', e => {
+  let formularioValido = false;
   let emailValido = validarEmail(valorEmail.value, valorEmail, erroEmail);
   let senhaValida = validarSenha(valorSenha.value, valorSenha, erroSenha);
   let estadoValido = validarEstados(valorEstados.value, valorEstados, erroEstados);
   let termosValido = validarTermos(valorTermos.checked, erroTermos);
-  let cpfValido = validarCPF(valorCPF.value, valorCPF, erroCPF);
+  let cpfValido = validarCPF(valorCPF, erroCPF);
+  let rgValido = validarRG(valorRG, erroRG);
+  let dataValida = validarData(valorDia, valorMes, valorAno, erroData);
 
   formularioValido =
     emailValido &&
     senhaValida &&
     estadoValido &&
     termosValido &&
-    cpfValido;
+    cpfValido &&
+    rgValido &&
+    dataValida;
 
   if (!formularioValido) {
     e.preventDefault();
@@ -103,9 +114,13 @@ const validarTermos = (valor, elementoErro) => {
   return true;
 }
 
-const validarCPF = (valor, elementoValor, elementoErro) => {
+const validarCPF = (elementoValor, elementoErro) => {
+  let valor = elementoValor.value;
+
   elementoValor.className = "input";
   elementoErro.innerText = "";
+
+  valor = valor.replace(/\./g, "").replace(/\//g, "").replace(/-/g, "");
 
   if (valor.length === 0 || valor === null) {
     elementoValor.className += " is-danger";
@@ -113,7 +128,7 @@ const validarCPF = (valor, elementoValor, elementoErro) => {
     return false
   } else if (valor.length != 11) {
     elementoValor.className += " is-danger";
-    elementoErro.innerText = "O CPF é contém apenas 11 dígitos";
+    elementoErro.innerText = "O CPF contém apenas 11 dígitos";
     return false
   } else {
     const CPFsINVALIDOS = [
@@ -173,6 +188,108 @@ const validarCPF = (valor, elementoValor, elementoErro) => {
   }
 
   elementoValor.className += " is-success";
+
+  return true;
+}
+
+const validarRG = (elementoValor, elementoErro) => {
+  let valor = elementoValor.value;
+
+  elementoValor.className = "input";
+  elementoErro.innerText = "";
+
+  valor = valor.replace(/\./g, "").replace(/\//g, "").replace(/-/g, "");
+
+  if (valor.length === 0 || valor === null) {
+    elementoValor.className += " is-danger";
+    elementoErro.innerText = "O RG é necessário";
+    return false
+  } else if (valor.length != 9) {
+    elementoValor.className += " is-danger";
+    elementoErro.innerText = "O RG contém apenas 9 dígitos";
+    return false
+  } else {
+    let valorTotal = 0;
+    let digito = 0;
+
+    for (let i = 0, j = 9; i < 8; i++ , j--) {
+      digito = Number(valor.charAt(i));
+
+      valorTotal += digito * j;
+    }
+
+    digito = valorTotal % 11;
+    digito = digito > 9 ? 0 : digito;
+
+    if (digito !== Number(valor.charAt(8))) {
+      elementoValor.className += " is-danger";
+      elementoErro.innerText = "O RG não é válido";
+
+      return false;
+    }
+  }
+
+  elementoValor.className += " is-success";
+
+  return true;
+}
+
+const validarData = (elementoValorDia, elementoValorMes, elementoValorAno, elementoErro) => {
+  let valorDia = elementoValorDia.value;
+  let valorMes = elementoValorMes.value;
+  let valorAno = elementoValorAno.value;
+  let dataAtual = new Date();
+  let dataGerada = new Date(valorAno + "-" + valorMes + "-" + valorDia);
+
+  elementoValorDia.className = "input";
+  elementoValorMes.className = "input";
+  elementoValorAno.className = "input";
+
+  elementoErro.innerText = "";
+
+  console.log(isNan(dataGerada));
+
+  if (valorDia.length === 0 || valorDia === null || valorMes.length === 0 || valorMes === null || valorAno.length === 0 || valorAno === null) {
+    elementoValorDia.className += " is-danger";
+    elementoValorMes.className += " is-danger";
+    elementoValorAno.className += " is-danger";  
+    
+    elementoErro.innerText = "A data de nascimento é necessária";
+    return false;
+  }
+
+  if(valorDia <= 0 || valorDia >= 32) {
+    elementoValorDia.className += " is-danger";
+    elementoValorMes.className += " is-danger";
+    elementoValorAno.className += " is-danger";  
+
+    elementoErro.innerText = "O dia de nascimento está incorreto";
+    return false;
+  }
+
+  if(valorMes <= 0 || valorMes >= 13) {
+    elementoValorDia.className += " is-danger";
+    elementoValorMes.className += " is-danger";
+    elementoValorAno.className += " is-danger";  
+
+    elementoErro.innerText = "O mês de nascimento está incorreto";
+    return false;
+  }
+
+  
+  if(valorAno <= 1900 || valorAno >= dataAtual.getFullYear()) {
+    elementoValorDia.className += " is-danger";
+    elementoValorMes.className += " is-danger";
+    elementoValorAno.className += " is-danger";  
+    
+    elementoErro.innerText = "O ano de nascimento está incorreto";
+    return false;
+  }
+  
+
+  elementoValorDia.className += " is-success";
+  elementoValorMes.className += " is-success";
+  elementoValorAno.className += " is-success";  
 
   return true;
 }
