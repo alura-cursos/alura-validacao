@@ -11,7 +11,7 @@
 	<title>Formulário de Cadastro</title>
 </head>
 
-<body class="has-background-light" style="height: 100vh">
+<body class="has-background-light" style="height: 100%">
 	<section class="section">
 		<div class="container">
 			<div class="columns is-centered">
@@ -19,6 +19,8 @@
 					<div class="box">
 						<h1 class="title">Formulário de Cadastro</h1>
 						<form id="form" novalidate>
+							<hr/>
+							<h3 class="title is-4">Informações de Acesso</h3>
 							<div class="field">
 								<label class="label">Email</label>
 								<div class="control">
@@ -33,6 +35,8 @@
 								</div>
 								<p class="help is-danger" id="erroSenha"></p>
 							</div>
+							<hr/>
+							<h3 class="title is-4">Informações Pessoais</h3>
 							<div class="field">
 								<label class="label">Estado de Residência</label>
 								<div class="select">
@@ -70,12 +74,43 @@
 								<p class="help is-danger" id="erroEstados"></p>
 							</div>
 							<div class="field">
+								<label class="label">Data de Nascimento</label>
+								<div class="field is-horizontal" style="width: 60%">
+									<div class="field-body">
+										<div class="field">
+											<p class="control" >
+												<input class="input" type="number" placeholder="Dia" max="31" min="1" id="valorDia">
+											</p>										
+										</div>
+										<div class="field">
+											<p class="control">
+												<input class="input" type="number" placeholder="Mês" max="12" min="1" id="valorMes">
+											</p>										
+										</div>
+										<div class="field">
+											<p class="control">
+												<input class="input" type="number" placeholder="Ano" min="1900" id="valorAno">
+											</p>										
+										</div>
+									</div>
+								</div>
+								<p class="help is-danger" id="erroData"></p>
+							</div>
+							<div class="field" style="width: 30%">
 								<label class="label">CPF</label>
-								<div class="control">
+								<div class="control" >
 									<input class="input" type="text" id="valorCPF" />
 								</div>
 								<p class="help is-danger" id="erroCPF"></p>
 							</div>
+							<div class="field" style="width: 30%">
+								<label class="label">RG</label>
+								<div class="control">
+									<input class="input" type="text" id="valorRG" />
+								</div>
+								<p class="help is-danger" id="erroRG"></p>
+							</div>
+							<hr/>
 							<div class="field">
 								<div class="control">
 									<label class="checkbox">
@@ -87,7 +122,7 @@
 							</div>
 							<div class="field">
 								<div class="control">
-									<button class="button is-link is-fullwidth" id="botaoSubmit">Cadastrar Usuário</button>
+									<button class="button is-success is-fullwidth" id="botaoSubmit">Cadastrar Usuário</button>
 								</div>
 							</div>
 						</form>
