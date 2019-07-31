@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="./theme.css" />
+	<script defer src="./cadastro.js"></script>
+	<title>Cadastro de Usuário</title>
+</head>
+
+<body class="has-background-light" style="height: 100%">
+	<section class="section">
+		<div class="container">
+			<div class="columns is-centered">
+				<div class="column is-half">
+					<div class="box">
+						<h1 class="title">Cadastro de Usuário</h1>
+						<form id="form" novalidate>
+							<hr />
+							<h3 class="title is-4">Informações de Acesso</h3>
+							<div class="field">
+								<label class="label">Email</label>
+								<div class="control">
+									<input class="input" type="email" id="valorEmail" />
+								</div>
+								<p class="help is-danger" id="erroEmail"></p>
+							</div>
+							<div class="field">
+								<label class="label">Senha</label>
+								<div class="control">
+									<input class="input" type="password" id="valorSenha" />
+								</div>
+								<p class="help is-danger" id="erroSenha"></p>
+							</div>
+							<hr />
+							<h3 class="title is-4">Informações Pessoais</h3>
+							<div class="field">
+								<label class="label">Estado de Residência</label>
+								<div class="select">
+									<select id="valorEstados">
+										<option value="Selecionar">Selecionar</option>
+										<option value="AC">AC</option>
+										<option value="AL">AL</option>
+										<option value="AP">AP</option>
+										<option value="AM">AM</option>
+										<option value="BA">BA</option>
+										<option value="CE">CE</option>
+										<option value="DF">DF</option>
+										<option value="ES">ES</option>
+										<option value="GO">GO</option>
+										<option value="MA">MA</option>
+										<option value="MS">MS</option>
+										<option value="MT">MT</option>
+										<option value="MG">MG</option>
+										<option value="PA">PA</option>
+										<option value="PB">PB</option>
+										<option value="PR">PR</option>
+										<option value="PE">PE</option>
+										<option value="PI">PI</option>
+										<option value="RJ">RJ</option>
+										<option value="RN">RN</option>
+										<option value="RS">RS</option>
+										<option value="RO">RO</option>
+										<option value="RR">RR<gma/option> <option value="SC">SC</option>
+										<option value="SP">SP</option>
+										<option value="SE">SE</option>
+										<option value="TO">TO</option>
+									</select>
+								</div>
+								<p class="help is-danger" id="erroEstados"></p>
+							</div>
+							<div class="field">
+								<label class="label">Data de Nascimento</label>
+								<div class="field is-horizontal" style="width: 60%">
+									<div class="field-body">
+										<div class="field">
+											<p class="control">
+												<input class="input" type="number" placeholder="Dia" max="31" min="1" id="valorDia">
+											</p>
+										</div>
+										<div class="field">
+											<p class="control">
+												<input class="input" type="number" placeholder="Mês" max="12" min="1" id="valorMes">
+											</p>
+										</div>
+										<div class="field">
+											<p class="control">
+												<input class="input" type="number" placeholder="Ano" min="1900" id="valorAno">
+											</p>
+										</div>
+									</div>
+								</div>
+								<p class="help is-danger" id="erroData"></p>
+							</div>
+							<div class="field" style="width: 30%">
+								<label class="label">CPF</label>
+								<div class="control">
+									<input class="input" type="text" id="valorCPF" />
+								</div>
+								<p class="help is-danger" id="erroCPF"></p>
+							</div>
+							<div class="field" style="width: 30%">
+								<label class="label">RG</label>
+								<div class="control">
+									<input class="input" type="text" id="valorRG" />
+								</div>
+								<p class="help is-danger" id="erroRG"></p>
+							</div>
+							<hr />
+							<div class="field">
+								<div class="control">
+									<label class="checkbox">
+										<input type="checkbox" id="valorTermos">
+										Eu aceito os termos e condições
+									</label>
+									<p class="help is-danger" id="erroTermos"></p>
+								</div>
+							</div>
+							<div class="field">
+								<div class="control">
+									<button class="button is-success is-fullwidth" id="botaoSubmit">Cadastrar Usuário</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
