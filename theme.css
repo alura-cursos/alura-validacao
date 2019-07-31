@@ -7,10 +7,6 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%; 
-}
-
 body {
   font: 14px 'Roboto', sans-serif;
   color: #333;
@@ -21,18 +17,32 @@ body {
 .container {
   height: 100%;
   display: flex;
+  padding: 50px 0;
   justify-content: center;
   align-items: center;
   align-content: center;
 }
 
 .box {
-  height: auto;
+  height: 100%;
   width: 450px;
   border-radius: 4px;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
   padding: 20px 30px;
   background: #FAFAFF;
+}
+
+hr {
+  height: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#333;
+  opacity: 0.2;
+  border: 0 none;
+}
+
+form h2 {
+  margin-top: 30px;
 }
 
 .input-container {
@@ -54,6 +64,7 @@ label span {
   margin-left: 3px;
   font-weight: 400;
   font-size: 14px;
+  color: #8F8F8F;
 }
 
 input {
@@ -73,18 +84,12 @@ input:focus {
   color: #333;
 }
 
-input:valid {
-  border-color: #009269;
-}
-
 input.possui-erro-validacao {
   border-color: #F73859;
 }
 
 .erro-validacao {
-  position: absolute;
-  right: 0;
-  top: 1px;
+  margin-top: 3px;
   color: #F73859;
   font-size: 14px;
 }
@@ -105,11 +110,16 @@ button {
   cursor: pointer;
 }
 
-.is-success {
+.botao-azul {
   background-color: #055989;
   color: white;
 }
 
-.is-success:hover {
+.botao-azul:hover {
   background-color: #05517D;
+}
+
+.sucesso {
+  color: #00A073;
+  text-decoration: underline;
 }
