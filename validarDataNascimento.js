@@ -1,0 +1,19 @@
+export const validarDataNascimento = (input) => {
+  const dataNascimento = new Date(input.value);
+  const dataAtual = new Date();
+
+  if (isNaN(dataNascimento)) {
+    input.setCustomValidity('Esta não é uma data válida');
+    return;
+  }
+
+  const dataFaz18 = new Date(dataNascimento.getUTCFullYear() + 18, dataNascimento.getUTCMonth(), dataNascimento.getUTCDate());
+
+  if (dataFaz18 > dataAtual) {
+    input.setCustomValidity('A idade mínima é de 18 anos');
+    return;
+  }
+
+  input.setCustomValidity('');
+  return;
+}

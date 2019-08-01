@@ -27,11 +27,10 @@ export const validarCPF = (input) => {
     valorTotal += digito * j;
   }
 
-  
+
   digito = 11 - (valorTotal % 11);
   digito = digito > 9 ? 0 : digito;
-  
-  console.log(digito, cpf.charAt(9))
+
   if (digito !== Number(cpf.charAt(9))) {
     input.setCustomValidity('Este não é um CPF válido');
     return;

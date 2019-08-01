@@ -19,12 +19,16 @@
         <h2>Informações Pessoais</h2>
         <hr />
         <div class="input-container">
+          <label for="dataNascimento">Data de Nascimento <span>(Necessário)</span></label>
+          <input min="1900-01-01" required data-tipo="dataNascimento" type="date" name="dataNascimento" id="dataNascimento" />
+        </div>
+        <div class="input-container">
           <label for="cpf">CPF <span>(Necessário)</span></label>
-          <input required minlength="11" data-tipo="cpf" type="text" name="cpf" id="cpf"/>
+          <input required minlength="11" data-tipo="cpf" type="text" name="cpf" id="cpf" />
         </div>
         <div class="input-container">
           <label for="rg">RG <span>(Necessário)</span></label>
-          <input required minlength="9" data-tipo="rg" type="text" name="rg" id="rg"/>
+          <input required minlength="9" data-tipo="rg" type="text" name="rg" id="rg" />
         </div>
         <div class="button-container">
           <button class="botao-azul" type="submit" id="botaoSubmit">
