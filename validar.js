@@ -40,7 +40,13 @@ const retornarMensagemErro = (tipo, validity) => {
       valueMissing: 'Esta não é uma data válida',
       rangeUnderflow: 'A data deve ser superior à 01/01/1900',
       customError: 'A idade mínima é de 18 anos'
-    }
+    },
+    nomeProduto: {
+      valueMissing: 'O nome é necessário',
+    },
+    precoProduto: {
+      valueMissing: 'O preço é necessário',
+    },
   };
 
   if (validity.typeMismatch) {
