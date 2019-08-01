@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style/theme.css" />
+  <script type="module" src="../../services/validarInputs.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cadastro de Usuário</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="box">
+      <h1>Cadastro de Usuário</h1>
+      <form id="form" method="get" action="./cadastro-usuario-endereco.html">
+        <h2>Informações Pessoais</h2>
+        <hr />
+        <div class="input-container">
+          <label for="dataNascimento">Data de Nascimento <span>(Necessário)</span></label>
+          <input min="1900-01-01" required data-tipo="dataNascimento" type="date" name="dataNascimento"
+            id="dataNascimento" />
+        </div>
+        <div class="input-container">
+          <label for="cpf">CPF <span>(Necessário)</span></label>
+          <input required minlength="11" data-tipo="cpf" type="text" name="cpf" id="cpf" />
+        </div>
+        <div class="input-container">
+          <label for="rg">RG <span>(Necessário)</span></label>
+          <input required minlength="9" data-tipo="rg" type="text" name="rg" id="rg" />
+        </div>
+        <div class="button-container">
+          <button class="botao-azul" type="submit" id="botaoSubmit">
+            Próximo Passo
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>
