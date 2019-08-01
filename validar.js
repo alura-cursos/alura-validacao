@@ -2,6 +2,7 @@ import { validarRG } from './validarRG.js'
 import { validarCPF } from './validarCPF.js'
 import { validarDataNascimento } from './validarDataNascimento.js';
 import { recuperarEndereco } from './recuperarEndereco.js';
+import { validarPreco } from './validarPreco.js';
 
 const retornarMensagemErro = (tipo, validity) => {
   const mensagensDeErro = {
@@ -44,8 +45,8 @@ const retornarMensagemErro = (tipo, validity) => {
     nomeProduto: {
       valueMissing: 'O nome é necessário',
     },
-    precoProduto: {
-      valueMissing: 'O preço é necessário',
+    preco: {
+      customError: 'O valor do produto deve ser superior a R$ 0'
     },
   };
 
@@ -79,10 +80,11 @@ export const validarInput = (input, adicionarErro = true) => {
     cep: (input) => recuperarEndereco(input),
     rg: (input) => validarRG(input),
     cpf: (input) => validarCPF(input),
-    dataNascimento: (input) => validarDataNascimento(input)
+    dataNascimento: (input) => validarDataNascimento(input),
+    preco: (input) => validarPreco(input),
   };
 
-  if (tipo === 'rg' || tipo === 'cpf' || tipo === 'cep' || tipo === 'dataNascimento') {
+  if (tipo === 'rg' || tipo === 'cpf' || tipo === 'cep' || tipo === 'dataNascimento' || tipo === 'preco') {
     validadorerEspecificos[tipo](input);
   }
 
