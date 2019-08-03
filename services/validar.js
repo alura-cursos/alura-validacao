@@ -69,12 +69,14 @@ const retornarMensagemErro = (tipo, validity) => {
 };
 
 export const validarInput = (input, adicionarErro = true) => {
-  let elementoErro;
   const classeElementoErro = "erro-validacao";
   const elementoPai = input.parentNode;
   const elementoErroExiste = elementoPai.querySelector(
     `.${classeElementoErro}`
   );
+  const elementoErro = elementoErroExiste
+    ? elementoErroExiste
+    : document.createElement("div");
   const classeInputErro = "possui-erro-validacao";
   const tipo = input.dataset.tipo;
   const elementoEhValido = input.validity.valid;
@@ -92,12 +94,6 @@ export const validarInput = (input, adicionarErro = true) => {
     dataNascimento: input => validarDataNascimento(input),
     preco: input => validarPreco(input)
   };
-
-  if (!elementoErroExiste) {
-    elementoErro = document.createElement("div");
-  } else {
-    elementoErro = elementoPai.querySelector(`.${classeElementoErro}`);
-  }
 
   if (tiposEspecificos[tipo] !== undefined) {
     validadorerEspecificos[tipo](input);
