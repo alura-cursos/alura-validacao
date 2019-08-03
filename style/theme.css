@@ -32,7 +32,7 @@ body {
   background: #fafaff;
 }
 
-hr {
+.divider {
   height: 2px;
   margin-left: auto;
   margin-right: auto;
@@ -41,7 +41,7 @@ hr {
   border: 0 none;
 }
 
-form h2 {
+.subtitulo {
   margin-top: 30px;
 }
 
@@ -52,7 +52,7 @@ form h2 {
   flex-direction: column;
 }
 
-label {
+.label {
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -60,14 +60,14 @@ label {
   font-weight: 500;
 }
 
-label span {
+.label .info {
   margin-left: 3px;
   font-weight: 400;
   font-size: 14px;
   color: #8f8f8f;
 }
 
-input {
+.input {
   padding: 10px;
   font-size: 16px;
   border: 2px solid #8f8f8f;
@@ -76,15 +76,15 @@ input {
   background: transparent;
 }
 
-input:hover {
+.input:hover {
   border-color: #333;
 }
 
-input:focus {
+.input:focus {
   color: #333;
 }
 
-input.possui-erro-validacao {
+.input.possui-erro-validacao {
   border-color: #f73859;
 }
 
@@ -94,12 +94,12 @@ input.possui-erro-validacao {
   font-size: 14px;
 }
 
-.button-container {
+.botao-container {
   display: flex;
   margin-top: 20px;
 }
 
-button {
+.botao {
   width: 100%;
   padding: 10px;
   border: none;
