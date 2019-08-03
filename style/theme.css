@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
 
 * {
   margin: 0;
@@ -8,9 +8,9 @@
 }
 
 body {
-  font: 14px 'Roboto', sans-serif;
+  font: 14px "Roboto", sans-serif;
   color: #333;
-  background: #EAEBEC;
+  background: #eaebec;
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -27,16 +27,16 @@ body {
   height: 100%;
   width: 450px;
   border-radius: 4px;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
   padding: 20px 30px;
-  background: #FAFAFF;
+  background: #fafaff;
 }
 
 hr {
   height: 2px;
   margin-left: auto;
   margin-right: auto;
-  background-color:#333;
+  background-color: #333;
   opacity: 0.2;
   border: 0 none;
 }
@@ -48,7 +48,7 @@ form h2 {
 .input-container {
   position: relative;
   display: flex;
-  margin-top: 15px; 
+  margin-top: 15px;
   flex-direction: column;
 }
 
@@ -64,14 +64,14 @@ label span {
   margin-left: 3px;
   font-weight: 400;
   font-size: 14px;
-  color: #8F8F8F;
+  color: #8f8f8f;
 }
 
 input {
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #8F8F8F;
-  color: #8F8F8F;
+  border: 2px solid #8f8f8f;
+  color: #8f8f8f;
   border-radius: 3px;
   background: transparent;
 }
@@ -85,12 +85,12 @@ input:focus {
 }
 
 input.possui-erro-validacao {
-  border-color: #F73859;
+  border-color: #f73859;
 }
 
 .erro-validacao {
   margin-top: 3px;
-  color: #F73859;
+  color: #f73859;
   font-size: 14px;
 }
 
@@ -106,7 +106,7 @@ button {
   font-weight: 700;
   font-size: 16px;
   border-radius: 3px;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
@@ -116,10 +116,9 @@ button {
 }
 
 .botao-azul:hover {
-  background-color: #05517D;
+  background-color: #05517d;
 }
 
 .sucesso {
-  color: #00A073;
-  text-decoration: underline;
+  color: #00a073;
 }
