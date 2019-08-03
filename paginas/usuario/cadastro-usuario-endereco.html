@@ -1,48 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../style/theme.css" />
+    <script type="module" src="../../services/app.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cadastro de Usuário</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../style/theme.css" />
-  <script type="module" src="../../services/validarInputs.js"></script>
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Cadastro de Usuário</title>
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="box">
-      <h1>Cadastro de Usuário</h1>
-      <form id="form" method="get" action="./cadastro-usuario-sucesso.html">
-        <h2>Endereço</h2>
-        <hr />
-        <div class="input-container">
-          <label for="cep">CEP <span>(Necessário)</span></label>
-          <input pattern="[\d]{5}-?[\d]{3}" required data-tipo="cep" type="text" name="cep" id="cep" />
-        </div>
-        <div class="input-container">
-          <label for="logradouro">Logradouro <span>(Necessário)</span></label>
-          <input required data-tipo="logradouro" type="text" name="logradouro" id="logradouro" />
-        </div>
-        <div class="input-container">
-          <label for="cidade">Cidade <span>(Necessário)</span></label>
-          <input required data-tipo="cidade" type="text" name="cidade" id="cidade" />
-        </div>
-        <div class="input-container">
-          <label for="estado">Estado <span>(Necessário)</span></label>
-          <input required data-tipo="estado" type="text" name="estado" id="estado" />
-        </div>
-        <div class="button-container">
-          <button class="botao-azul" type="submit" id="botaoSubmit">
-            Próximo Passo
-          </button>
-        </div>
-      </form>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h1>Cadastro de Usuário</h1>
+        <form id="form" method="get" action="./cadastro-usuario-sucesso.html">
+          <h2>Endereço</h2>
+          <hr />
+          <div class="input-container">
+            <label for="cep">CEP <span>(Necessário)</span></label>
+            <input
+              pattern="[\d]{5}-?[\d]{3}"
+              required
+              data-tipo="cep"
+              type="text"
+              name="cep"
+              id="cep"
+            />
+          </div>
+          <div class="input-container">
+            <label for="logradouro">Logradouro <span>(Necessário)</span></label>
+            <input
+              required
+              data-tipo="logradouro"
+              type="text"
+              name="logradouro"
+              id="logradouro"
+            />
+          </div>
+          <div class="input-container">
+            <label for="cidade">Cidade <span>(Necessário)</span></label>
+            <input
+              required
+              data-tipo="cidade"
+              type="text"
+              name="cidade"
+              id="cidade"
+            />
+          </div>
+          <div class="input-container">
+            <label for="estado">Estado <span>(Necessário)</span></label>
+            <input
+              required
+              data-tipo="estado"
+              type="text"
+              name="estado"
+              id="estado"
+            />
+          </div>
+          <div class="button-container">
+            <button class="botao-azul" type="submit" id="botaoSubmit">
+              Próximo Passo
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-
-</body>
-
+  </body>
 </html>

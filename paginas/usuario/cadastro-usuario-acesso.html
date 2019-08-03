@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../style/theme.css" />
+    <script type="module" src="../../services/app.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cadastro de Usuário</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../style/theme.css" />
-  <script type="module" src="../../services/validarInputs.js"></script>
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Cadastro de Usuário</title>
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="box">
-      <h1>Cadastro de Usuário</h1>
-      <form id="form" method="get" action="./cadastro-usuario-pessoais.html">
-        <h2>Informações de Acesso</h2>
-        <hr />
-        <div class="input-container">
-          <label for="email">Email <span>(Necessário)</span></label>
-          <input required data-tipo="email" type="email" name="email" id="email" />
-        </div>
-        <div class="input-container">
-          <label for="password">Senha <span>(Necessário)</span></label>
-          <input required data-tipo="senha" minlength="4" type="password" name="password" id="password" />
-        </div>
-        <div class="button-container">
-          <button class="botao-azul" type="submit" id="botaoSubmit">
-            Próximo Passo
-          </button>
-        </div>
-      </form>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h1>Cadastro de Usuário</h1>
+        <form id="form" method="get" action="./cadastro-usuario-pessoais.html">
+          <h2>Informações de Acesso</h2>
+          <hr />
+          <div class="input-container">
+            <label for="email">Email <span>(Necessário)</span></label>
+            <input
+              required
+              data-tipo="email"
+              type="email"
+              name="email"
+              id="email"
+            />
+          </div>
+          <div class="input-container">
+            <label for="password">Senha <span>(Necessário)</span></label>
+            <input
+              required
+              data-tipo="senha"
+              minlength="4"
+              type="password"
+              name="password"
+              id="password"
+            />
+          </div>
+          <div class="button-container">
+            <button class="botao-azul" type="submit" id="botaoSubmit">
+              Próximo Passo
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-
-</body>
-
+  </body>
 </html>
