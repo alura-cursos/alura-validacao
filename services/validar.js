@@ -5,6 +5,15 @@ import { recuperarEndereco } from "./recuperarEndereco.js";
 import { validarPreco } from "./validarPreco.js";
 
 const retornarMensagemErro = (tipo, validity) => {
+  let mensagemDeErro = "";
+  const tiposDeErro = [
+    "typeMismatch",
+    "valueMissing",
+    "tooShort",
+    "patternMismatch",
+    "rangeUnderflow",
+    "customError"
+  ];
   const mensagensDeErro = {
     email: {
       valueMissing: "O e-mail é necessário",
@@ -50,32 +59,23 @@ const retornarMensagemErro = (tipo, validity) => {
     }
   };
 
-  if (validity.typeMismatch) {
-    return mensagensDeErro[tipo]["typeMismatch"];
-  }
-  if (validity.valueMissing) {
-    return mensagensDeErro[tipo]["valueMissing"];
-  }
-  if (validity.tooShort) {
-    return mensagensDeErro[tipo]["tooShort"];
-  }
-  if (validity.patternMismatch) {
-    return mensagensDeErro[tipo]["patternMismatch"];
-  }
-  if (validity.rangeUnderflow) {
-    return mensagensDeErro[tipo]["rangeUnderflow"];
-  }
-  if (validity.customError) {
-    return mensagensDeErro[tipo]["customError"];
-  }
+  tiposDeErro.forEach(erro => {
+    if (validity[erro]) {
+      mensagemDeErro = mensagensDeErro[tipo][erro];
+    }
+  });
+
+  return mensagemDeErro;
 };
 
 export const validarInput = (input, adicionarErro = true) => {
-  const elementoErro;
+  let elementoErro;
   const classeElementoErro = "erro-validacao";
-  const elementoErroExiste = elementoPai.querySelector(`.${classeElementoErro}`);
-  const classeInputErro = "possui-erro-validacao";
   const elementoPai = input.parentNode;
+  const elementoErroExiste = elementoPai.querySelector(
+    `.${classeElementoErro}`
+  );
+  const classeInputErro = "possui-erro-validacao";
   const tipo = input.dataset.tipo;
   const elementoEhValido = input.validity.valid;
   const tiposEspecificos = {
@@ -93,8 +93,8 @@ export const validarInput = (input, adicionarErro = true) => {
     preco: input => validarPreco(input)
   };
 
-  if(!elementoErroExiste) {
-    elementoErro = document.createElement('div');
+  if (!elementoErroExiste) {
+    elementoErro = document.createElement("div");
   }
 
   if (tiposEspecificos[tipo] !== undefined) {
