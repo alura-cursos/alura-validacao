@@ -95,6 +95,8 @@ export const validarInput = (input, adicionarErro = true) => {
 
   if (!elementoErroExiste) {
     elementoErro = document.createElement("div");
+  } else {
+    elementoErro = elementoPai.querySelector(`.${classeElementoErro}`);
   }
 
   if (tiposEspecificos[tipo] !== undefined) {
