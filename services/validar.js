@@ -74,7 +74,7 @@ export const validarInput = (input, adicionarErro = true) => {
   const elementoErroExiste = elementoPai.querySelector(
     `.${classeElementoErro}`
   );
-  const elementoErro = elementoErroExiste ||document.createElement("div");
+  const elementoErro = elementoErroExiste || document.createElement("div");
   const classeInputErro = "possui-erro-validacao";
   const tipo = input.dataset.tipo;
   const elementoEhValido = input.validity.valid;
@@ -85,7 +85,7 @@ export const validarInput = (input, adicionarErro = true) => {
     dataNascimento: "dataNascimento",
     preco: "preco"
   };
-  const validadorerEspecificos = {
+  const validadoresEspecificos = {
     cep: input => recuperarEndereco(input),
     rg: input => validarRG(input),
     cpf: input => validarCPF(input),
@@ -93,8 +93,8 @@ export const validarInput = (input, adicionarErro = true) => {
     preco: input => validarPreco(input)
   };
 
-  if (tiposEspecificos[tipo] !== undefined) {
-    validadorerEspecificos[tipo](input);
+  if (tiposEspecificos[tipo]) {
+    validadoresEspecificos[tipo](input);
   }
 
   // elemento não é valido
