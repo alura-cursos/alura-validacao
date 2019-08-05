@@ -74,9 +74,7 @@ export const validarInput = (input, adicionarErro = true) => {
   const elementoErroExiste = elementoPai.querySelector(
     `.${classeElementoErro}`
   );
-  const elementoErro = elementoErroExiste
-    ? elementoErroExiste
-    : document.createElement("div");
+  const elementoErro = elementoErroExiste ||document.createElement("div");
   const classeInputErro = "possui-erro-validacao";
   const tipo = input.dataset.tipo;
   const elementoEhValido = input.validity.valid;
