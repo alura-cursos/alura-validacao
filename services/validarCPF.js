@@ -1,15 +1,15 @@
 export const validarCPF = input => {
-  const CPFsINVALIDOS = {
-    11111111111: "",
-    22222222222: "",
-    33333333333: "",
-    44444444444: "",
-    55555555555: "",
-    66666666666: "",
-    77777777777: "",
-    88888888888: "",
-    99999999999: ""
-  };
+  const CPFsINVALIDOS = [
+    11111111111,
+    22222222222,
+    33333333333,
+    44444444444,
+    55555555555,
+    66666666666,
+    77777777777,
+    88888888888,
+    99999999999
+  ];
   const cpf = input.value;
   let valorTotal = 0;
   let digito = 0;
@@ -24,11 +24,16 @@ export const validarCPF = input => {
     return;
   }
 
-  for (let i = 0, j = 10; i < cpfNumeros.length - 2; i++, j--) {
-    digito = Number(cpfNumeros.charAt(i));
+  let primeiroTamanhoInicial = 10;
+  const primeiraPausa = 9;
+  Array.from(cpfNumeros).forEach((numeroAtual, index) => {
+    if (index < primeiraPausa) {
+      const digito = Number(numeroAtual);
 
-    valorTotal += digito * j;
-  }
+      valorTotal += digito * primeiroTamanhoInicial;
+      primeiroTamanhoInicial--;
+    }
+  });
 
   digito = 11 - (valorTotal % 11);
 
@@ -43,11 +48,16 @@ export const validarCPF = input => {
 
   valorTotal = 0;
 
-  for (let i = 0, j = 11; i < cpfNumeros.length - 1; i++, j--) {
-    digito = Number(cpfNumeros.charAt(i));
+  let segundoTamanhoInicial = 11;
+  const segundaPausa = 10;
+  Array.from(cpfNumeros).forEach((numeroAtual, index) => {
+    if (index < segundaPausa) {
+      const digito = Number(numeroAtual);
 
-    valorTotal += digito * j;
-  }
+      valorTotal += digito * segundoTamanhoInicial;
+      segundoTamanhoInicial--;
+    }
+  });
 
   digito = 11 - (valorTotal % 11);
 
