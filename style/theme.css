@@ -33,6 +33,7 @@ body {
 }
 
 .divider {
+  margin: 20px 0;
   height: 2px;
   margin-left: auto;
   margin-right: auto;
@@ -42,7 +43,7 @@ body {
 }
 
 .subtitulo {
-  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .input-container {
