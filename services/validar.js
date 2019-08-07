@@ -3,61 +3,27 @@ import { validarCPF } from "./validarCPF.js";
 import { validarDataNascimento } from "./validarDataNascimento.js";
 import { recuperarEndereco } from "./recuperarEndereco.js";
 import { validarPreco } from "./validarPreco.js";
+import { mensagensDeErro } from "./constants/mensagensDeErro.js";
+import {
+  CUSTOM_ERROR,
+  VALUE_MISSING,
+  TOO_SHORT,
+  PATTERN_MISMATCH,
+  RANGE_UNDER_FLOW,
+  TYPE_MISMATCH
+} from "./constants/tiposDeErros.js";
+import { tiposDeInputs } from "./constants/tiposDeInputs.js";
 
 const retornarMensagemErro = (tipo, validity) => {
   let mensagemDeErro = "";
   const tiposDeErro = [
-    "typeMismatch",
-    "valueMissing",
-    "tooShort",
-    "patternMismatch",
-    "rangeUnderflow",
-    "customError"
+    TYPE_MISMATCH,
+    VALUE_MISSING,
+    TOO_SHORT,
+    PATTERN_MISMATCH,
+    RANGE_UNDER_FLOW,
+    CUSTOM_ERROR
   ];
-  const mensagensDeErro = {
-    email: {
-      valueMissing: "O e-mail é necessário",
-      typeMismatch: "Este não é um e-mail válido"
-    },
-    senha: {
-      valueMissing: "A senha é necessária",
-      tooShort: "A senha deve conter 4 caracteres ou mais"
-    },
-    cpf: {
-      valueMissing: "O CPF é necessário",
-      tooShort: "Este não é um CPF válido",
-      customError: "Este não é um CPF válido"
-    },
-    rg: {
-      valueMissing: "O RG é necessário",
-      tooShort: "Este não é um RG válido",
-      customError: "Este não é um RG válido"
-    },
-    cep: {
-      valueMissing: "O CEP é necessário",
-      patternMismatch: "Este não é um CEP válido"
-    },
-    logradouro: {
-      valueMissing: "O logradouro é necessário"
-    },
-    cidade: {
-      valueMissing: "A cidade é necessária"
-    },
-    estado: {
-      valueMissing: "O estado é necessário"
-    },
-    dataNascimento: {
-      valueMissing: "Esta não é uma data válida",
-      rangeUnderflow: "A data deve ser superior à 01/01/1900",
-      customError: "A idade mínima é de 18 anos"
-    },
-    nomeProduto: {
-      valueMissing: "O nome é necessário"
-    },
-    preco: {
-      customError: "O valor do produto deve ser superior a R$ 0"
-    }
-  };
 
   tiposDeErro.forEach(erro => {
     if (validity[erro]) {
@@ -79,11 +45,11 @@ export const validarInput = (input, adicionarErro = true) => {
   const tipo = input.dataset.tipo;
   const elementoEhValido = input.validity.valid;
   const tiposEspecificos = {
-    rg: "rg",
-    cpf: "cpf",
-    cep: "cep",
-    dataNascimento: "dataNascimento",
-    preco: "preco"
+    [tiposDeInputs.RG]: "rg",
+    [tiposDeInputs.CPF]: "cpf",
+    [tiposDeInputs.CEP]: "cep",
+    [tiposDeInputs.DATA_NASCIMENTO]: "dataNascimento",
+    [tiposDeInputs.PRECO]: "preco"
   };
   const validadoresEspecificos = {
     cep: input => recuperarEndereco(input),
