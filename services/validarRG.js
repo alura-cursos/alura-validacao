@@ -1,24 +1,36 @@
-export const validarRG = (input) => {
-  let rg = input.value;
+const calcularValorTotal = multiplicador => (resultado, numeroAtual) =>
+  resultado + numeroAtual * multiplicador--;
+
+const calcularDigito = parteRG => {
+  let digitoGerado = 0;
   let valorTotal = 0;
-  let digito = 0;
 
-  rg = rg.replace(/\./g, "").replace(/\//g, "").replace(/-/g, "");
+  valorTotal = parteRG.reduce(calcularValorTotal(9), 0);
 
-  for (let i = 0, j = 9; i < rg.length - 1; i++ , j--) {
-    digito = Number(rg.charAt(i));
+  digitoGerado = valorTotal % 11;
 
-    valorTotal += digito * j;
+  if (digitoGerado > 9) {
+    digitoGerado = 0;
   }
 
-  digito = valorTotal % 11;
-  digito = digito > 9 ? 0 : digito;
+  return digitoGerado;
+};
 
-  if (digito !== Number(rg.charAt(8))) {
-    input.setCustomValidity('Este não é um RG válido');
+export const validarRG = input => {
+  const rgNumeros = input.value
+    .replace(/\./g, "")
+    .replace(/\//g, "")
+    .replace(/-/g, "");
+
+  const parteRG = rgNumeros.substr(0, 8).split("");
+  const digitoDoRG = Number(rgNumeros.charAt(8));
+  const digitoGerado = calcularDigito(parteRG);
+
+  if (digitoDoRG !== digitoGerado) {
+    input.setCustomValidity("Este não é um RG válido");
     return;
   }
 
-  input.setCustomValidity('');
+  input.setCustomValidity("");
   return;
-}
+};

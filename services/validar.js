@@ -1,97 +1,75 @@
-import { validarRG } from './validarRG.js'
-import { validarCPF } from './validarCPF.js'
-import { validarDataNascimento } from './validarDataNascimento.js';
-import { recuperarEndereco } from './recuperarEndereco.js';
-import { validarPreco } from './validarPreco.js';
+import { validarRG } from "./validarRG.js";
+import { validarCPF } from "./validarCPF.js";
+import { validarDataNascimento } from "./validarDataNascimento.js";
+import { recuperarEndereco } from "./recuperarEndereco.js";
+import { validarPreco } from "./validarPreco.js";
+import { mensagensDeErro } from "./constants/mensagensDeErro.js";
+import {
+  CUSTOM_ERROR,
+  VALUE_MISSING,
+  TOO_SHORT,
+  PATTERN_MISMATCH,
+  RANGE_UNDER_FLOW,
+  TYPE_MISMATCH
+} from "./constants/tiposDeErros.js";
+import { tiposDeInputs } from "./constants/tiposDeInputs.js";
 
 const retornarMensagemErro = (tipo, validity) => {
-  const mensagensDeErro = {
-    email: {
-      valueMissing: 'O e-mail é necessário',
-      typeMismatch: 'Este não é um e-mail válido',
-    },
-    senha: {
-      valueMissing: 'A senha é necessária',
-      tooShort: 'A senha deve conter 4 caracteres ou mais'
-    },
-    cpf: {
-      valueMissing: 'O CPF é necessário',
-      tooShort: 'Este não é um CPF válido',
-      customError: 'Este não é um CPF válido'
-    },
-    rg: {
-      valueMissing: 'O RG é necessário',
-      tooShort: 'Este não é um RG válido',
-      customError: 'Este não é um RG válido'
-    },
-    cep: {
-      valueMissing: 'O CEP é necessário',
-      patternMismatch: 'Este não é um CEP válido',
-    },
-    logradouro: {
-      valueMissing: 'O logradouro é necessário',
-    },
-    cidade: {
-      valueMissing: 'A cidade é necessária',
-    },
-    estado: {
-      valueMissing: 'O estado é necessário',
-    },
-    dataNascimento: {
-      valueMissing: 'Esta não é uma data válida',
-      rangeUnderflow: 'A data deve ser superior à 01/01/1900',
-      customError: 'A idade mínima é de 18 anos'
-    },
-    nomeProduto: {
-      valueMissing: 'O nome é necessário',
-    },
-    preco: {
-      customError: 'O valor do produto deve ser superior a R$ 0'
-    },
-  };
+  let mensagemDeErro = "";
+  const tiposDeErro = [
+    TYPE_MISMATCH,
+    VALUE_MISSING,
+    TOO_SHORT,
+    PATTERN_MISMATCH,
+    RANGE_UNDER_FLOW,
+    CUSTOM_ERROR
+  ];
 
-  if (validity.typeMismatch) {
-    return mensagensDeErro[tipo]['typeMismatch'];
-  }
-  if (validity.valueMissing) {
-    return mensagensDeErro[tipo]['valueMissing'];
-  }
-  if (validity.tooShort) {
-    return mensagensDeErro[tipo]['tooShort'];
-  }
-  if (validity.patternMismatch) {
-    return mensagensDeErro[tipo]['patternMismatch'];
-  }
-  if (validity.rangeUnderflow) {
-    return mensagensDeErro[tipo]['rangeUnderflow'];
-  }
-  if (validity.customError) {
-    return mensagensDeErro[tipo]['customError'];
-  }
-}
+  tiposDeErro.forEach(erro => {
+    if (validity[erro]) {
+      mensagemDeErro = mensagensDeErro[tipo][erro];
+    }
+  });
+
+  return mensagemDeErro;
+};
 
 export const validarInput = (input, adicionarErro = true) => {
-  const classeInputErro = 'possui-erro-validacao';
-  const classeElementoErro = 'erro-validacao';
+  const classeElementoErro = "erro-validacao";
   const elementoPai = input.parentNode;
-  const elementoErro = elementoPai.querySelector(`.${classeElementoErro}`) || document.createElement('div');
+  const elementoErroExiste = elementoPai.querySelector(
+    `.${classeElementoErro}`
+  );
+  const elementoErro = elementoErroExiste || document.createElement("div");
+  const classeInputErro = "possui-erro-validacao";
   const tipo = input.dataset.tipo;
-  const validadorerEspecificos = {
-    cep: (input) => recuperarEndereco(input),
-    rg: (input) => validarRG(input),
-    cpf: (input) => validarCPF(input),
-    dataNascimento: (input) => validarDataNascimento(input),
-    preco: (input) => validarPreco(input),
+  const elementoEhValido = input.validity.valid;
+  const tiposEspecificos = {
+    [tiposDeInputs.RG]: "rg",
+    [tiposDeInputs.CPF]: "cpf",
+    [tiposDeInputs.CEP]: "cep",
+    [tiposDeInputs.DATA_NASCIMENTO]: "dataNascimento",
+    [tiposDeInputs.PRECO]: "preco"
+  };
+  const validadoresEspecificos = {
+    cep: input => recuperarEndereco(input),
+    rg: input => validarRG(input),
+    cpf: input => validarCPF(input),
+    dataNascimento: input => validarDataNascimento(input),
+    preco: input => validarPreco(input)
   };
 
-  if (tipo === 'rg' || tipo === 'cpf' || tipo === 'cep' || tipo === 'dataNascimento' || tipo === 'preco') {
-    validadorerEspecificos[tipo](input);
+  if (tiposEspecificos[tipo]) {
+    validadoresEspecificos[tipo](input);
   }
 
   // elemento não é valido
-  if (!input.validity.valid) {
+  if (!elementoEhValido) {
     elementoErro.className = classeElementoErro;
-    elementoErro.textContent = retornarMensagemErro(input.dataset.tipo, input.validity);
+    elementoErro.textContent = retornarMensagemErro(
+      input.dataset.tipo,
+      input.validity
+    );
 
     if (adicionarErro) {
       elementoPai.insertBefore(elementoErro, input.nextSibling);
@@ -102,4 +80,4 @@ export const validarInput = (input, adicionarErro = true) => {
     input.classList.remove(classeInputErro);
     elementoErro.remove();
   }
-}
+};
