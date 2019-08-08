@@ -4,26 +4,10 @@ import { validarDataNascimento } from "./validarDataNascimento.js";
 import { recuperarEndereco } from "./recuperarEndereco.js";
 import { validarPreco } from "./validarPreco.js";
 import { mensagensDeErro } from "./constants/mensagensDeErro.js";
-import {
-  CUSTOM_ERROR,
-  VALUE_MISSING,
-  TOO_SHORT,
-  PATTERN_MISMATCH,
-  RANGE_UNDER_FLOW,
-  TYPE_MISMATCH
-} from "./constants/tiposDeErros.js";
-import { tiposDeInputs } from "./constants/tiposDeInputs.js";
+import { tiposDeErro } from "./constants/tiposDeErros.js";
 
 const retornarMensagemErro = (tipo, validity) => {
   let mensagemDeErro = "";
-  const tiposDeErro = [
-    TYPE_MISMATCH,
-    VALUE_MISSING,
-    TOO_SHORT,
-    PATTERN_MISMATCH,
-    RANGE_UNDER_FLOW,
-    CUSTOM_ERROR
-  ];
 
   tiposDeErro.forEach(erro => {
     if (validity[erro]) {
@@ -44,13 +28,6 @@ export const validarInput = (input, adicionarErro = true) => {
   const classeInputErro = "possui-erro-validacao";
   const tipo = input.dataset.tipo;
   const elementoEhValido = input.validity.valid;
-  const tiposEspecificos = {
-    [tiposDeInputs.RG]: "rg",
-    [tiposDeInputs.CPF]: "cpf",
-    [tiposDeInputs.CEP]: "cep",
-    [tiposDeInputs.DATA_NASCIMENTO]: "dataNascimento",
-    [tiposDeInputs.PRECO]: "preco"
-  };
   const validadoresEspecificos = {
     cep: input => recuperarEndereco(input),
     rg: input => validarRG(input),
@@ -59,7 +36,7 @@ export const validarInput = (input, adicionarErro = true) => {
     preco: input => validarPreco(input)
   };
 
-  if (tiposEspecificos[tipo]) {
+  if (validadoresEspecificos[tipo]) {
     validadoresEspecificos[tipo](input);
   }
 
