@@ -49,7 +49,7 @@ export const validarInput = (input, adicionarErro = true) => {
     );
 
     if (adicionarErro) {
-      elementoPai.insertBefore(elementoErro, input.nextSibling);
+      input.after(elementoErro);
       input.classList.add(classeInputErro);
     }
   } else {
