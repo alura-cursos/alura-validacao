@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../style/theme.css" />
-    <script
-      src="https://github.com/codermarcos/simple-mask-money/releases/download/v3.0.0/simple-mask-money.js"></script>
-    <script type="module" src="../../services/app.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Cadastro de Produto</title>
   </head>
@@ -18,19 +14,24 @@
         <h1>Cadastro de Produto</h1>
         <form id="form" method="get" action="./cadastro-sucesso.html">
           <div class="input-container">
-            <label class="label" for="preco">Preço <span class="info">(Necessário)</span></label>
-            <input class="input" required data-tipo="preco" type="text"
-              name="preco" id="preco" autofocus />
+            <label class="label" for="preco"
+              >Preço <span class="info">(Necessário)</span></label
+            >
+            <input class="input" name="preco" id="preco" autofocus />
           </div>
           <div class="input-container">
-            <label class="label" for="nomeProduto">Nome <span class="info">(Necessário)</span></label>
-            <input class="input" required data-tipo="nomeProduto" type="text"
-              name="nomeProduto" id="nomeProduto" />
+            <label class="label" for="nomeProduto"
+              >Nome <span class="info">(Necessário)</span></label
+            >
+            <input class="input" name="nomeProduto" id="nomeProduto" />
           </div>
           <div class="input-container">
             <label class="label" for="descricaoProduto">Descrição</label>
-            <input class="input" data-tipo="descricaoProduto" type="text"
-              name="descricaoProduto" id="descricaoProduto" />
+            <input
+              class="input"
+              name="descricaoProduto"
+              id="descricaoProduto"
+            />
           </div>
           <div class="botao-container">
             <button class="botao botao-azul" type="submit" id="botaoSubmit">
@@ -41,5 +42,4 @@
       </div>
     </div>
   </body>
-
 </html>
